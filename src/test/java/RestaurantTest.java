@@ -39,6 +39,19 @@ class RestaurantTest {
         assertEquals(restaurant.isRestaurantOpen(), false);
     }
 
+
+    //<<<<<<<<<<<<<<<<TEST CASE TO CALCULATE TOTAL ORDER VALUE>>>>>>>>>>>>>
+    @Test
+    public void should_display_total_order_value_given_the_list_of_item_names() {
+
+        restaurant.addToMenu("Sweet corn soup", 119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        restaurant.addToMenu("Chocolate brownie", 90);
+        Item item = restaurant.selectItem("Sweet corn soup");
+        Item item1 = restaurant.selectItem("Vegetable lasagne");
+    }
+
+
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
     public void adding_item_to_menu_should_increase_menu_size_by_1() {
