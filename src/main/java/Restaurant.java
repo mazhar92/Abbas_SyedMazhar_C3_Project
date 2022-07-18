@@ -10,6 +10,8 @@ public class Restaurant {
     public LocalTime closingTime;
     private List<Item> menu = new ArrayList<Item>();
 
+
+
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
         this.location = location;
@@ -17,21 +19,41 @@ public class Restaurant {
         this.closingTime = closingTime;
     }
 
-    public boolean isRestaurantOpen() {
+    public boolean isRestaurantOpen(){
 
         if(getCurrentTime().isAfter(openingTime) && getCurrentTime().isBefore(closingTime)) {
             return true;
+
+            // DELETE ABOVE STATEMENT AND WRITE CODE HERE
         }
         return false;
     }
-
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
         return menu;
+
     }
 
+    //Method will select item from the menu
+    public Item selectItem(String itemName) {
+        for (Item item : menu) {
+            if (item.getName().equals(itemName)){
+                return item;
+            }
+        }
+        return null;
+    }
+    //Implemented Feature for Calculating Total order value
+    public int totalOrderValue(List<String> itemNames){
+        int totalPrice=0;
+        for(String itemName:itemNames){
+            totalPrice= totalPrice+selectItem(itemName).getPrice();
+
+        }
+        return totalPrice;
+    }
     private Item findItemByName(String itemName){
         for(Item item: menu) {
             if(item.getName().equals(itemName))
@@ -43,8 +65,9 @@ public class Restaurant {
     public void addToMenu(String name, int price) {
         Item newItem = new Item(name,price);
         menu.add(newItem);
+
     }
-    
+
     public void removeFromMenu(String itemName) throws itemNotFoundException {
 
         Item itemToBeRemoved = findItemByName(itemName);
